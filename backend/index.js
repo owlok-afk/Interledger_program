@@ -49,7 +49,7 @@ console.log("   RECEIVER:", RECEIVER_WALLET_URL);
 
 // Rutas
 app.get("/", (req, res) => {
-  res.send("🚀 Backend Open Payments activo! Usa POST /pago para iniciar pagos.");
+  res.send("Servicio funcionando");
 });
 
 // Login simple

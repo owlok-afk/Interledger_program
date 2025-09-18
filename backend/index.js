@@ -31,7 +31,7 @@ const PASS = process.env.PASS;
 
 // Validaciones iniciales
 if (!KEY_ID || !SENDER_WALLET_URL || !RECEIVER_WALLET_URL) {
-  console.error("❌ Falta configurar .env -> KEY_ID, SENDER o RECEIVER.");
+  console.error("❌Error Falta configurar .env -> KEY_ID, SENDER o RECEIVER.");
   process.exit(1);
 }
 

@@ -1,8 +1,7 @@
-// Catalog.jsx
-import React from "react";
+import React, { useState } from "react";
 import heroImage from "./assets/artesanias_cuarto.png";
 
-// Importa todas las imágenes de productos manualmente (mantén las extensiones tal como las tienes)
+// Importa todas las imágenes de productos
 import img1 from "./assets/1.jpg";
 import img2 from "./assets/2.png";
 import img3 from "./assets/3.png";
@@ -14,12 +13,14 @@ import img8 from "./assets/8.jpg";
 import img9 from "./assets/9.jpg";
 import img10 from "./assets/10.PNG";
 
-export default function Catalog({ onSelectProduct }) {
-  const productImages = [
-    img1, img2, img3, img4, img5,
-    img6, img7, img8, img9, img10,
-  ];
+// Componentes al mismo nivel
+import About from "./About";
+import Contact from "./Contact";
 
+export default function Catalog({ onSelectProduct }) {
+  const [activeTab, setActiveTab] = useState("home");
+
+  const productImages = [img1,img2,img3,img4,img5,img6,img7,img8,img9,img10];
   const products = productImages.map((image, i) => ({
     id: i + 1,
     name: `Producto ${i + 1}`,
@@ -47,49 +48,52 @@ export default function Catalog({ onSelectProduct }) {
     button: { background: "#d35400", color: "#fff", border: "none", padding: "10px 14px", borderRadius: 8, cursor: "pointer", fontWeight: 600 },
   };
 
-  return (
-    <div style={styles.page}>
-      {/* NAVBAR */}
-      <nav style={styles.nav}>
-        <div style={styles.navTitle}>Artesanias locales por y para ti</div>
-        <ul style={styles.navList}>
-          <li style={styles.navItem}>Inicio</li>
-          <li style={styles.navItem}>Sobre nosotros</li>
-          <li style={styles.navItem}>Productos</li>
-          <li style={styles.navItem}>Contacto</li>
-        </ul>
-      </nav>
-
-      {/* HERO: utilizo <img> para asegurar que siempre se renderice */}
+  const HomeContent = () => (
+    <>
       <div style={styles.heroWrap}>
-        <img src={heroImage} alt="Artesanías - Cuarto" style={styles.heroImg} />
+        <img src={heroImage} alt="Artesanías" style={styles.heroImg} />
         <div style={styles.heroOverlay}>
           <h2 style={styles.heroTitle}>Arte Mexicano </h2>
           <p style={styles.heroText}>Typical products & souvenirs - Artesanías con historia</p>
         </div>
       </div>
 
-      {/* CATÁLOGO */}
       <section style={styles.section}>
         <h1 style={{ textAlign: "center", color: "#3c2f2f", fontSize: 28, marginBottom: 20 }}>Catálogo de Productos</h1>
-
         <div style={styles.grid}>
           {products.map((product) => (
             <div key={product.id} style={styles.card}>
               <img src={product.image} alt={product.name} style={styles.prodImg} />
               <div style={styles.cardBody}>
                 <h3 style={styles.prodName}>{product.name}</h3>
-                <button
-                  onClick={() => onSelectProduct(product)}
-                  style={styles.button}
-                >
-                  Ver más
-                </button>
+                <button onClick={() => onSelectProduct(product)} style={styles.button}>Ver más</button>
               </div>
             </div>
           ))}
         </div>
       </section>
+    </>
+  );
+
+  const renderContent = () => {
+    if (activeTab === "about") return <About />;
+    if (activeTab === "contact") return <Contact />;
+    return <HomeContent />;
+  };
+
+  return (
+    <div style={styles.page}>
+      <nav style={styles.nav}>
+        <div style={styles.navTitle}>Artesanías locales por y para ti</div>
+        <ul style={styles.navList}>
+          <li style={styles.navItem} onClick={() => setActiveTab("home")}>Inicio</li>
+          <li style={styles.navItem} onClick={() => setActiveTab("about")}>Sobre nosotros</li>
+          <li style={styles.navItem}>Productos</li>
+          <li style={styles.navItem} onClick={() => setActiveTab("contact")}>Contacto</li>
+        </ul>
+      </nav>
+
+      {renderContent()}
     </div>
   );
 }

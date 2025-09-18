@@ -61,7 +61,7 @@ export default function Artesano1() {
           del arte mexicano.
         </p>
         <p style={styles.quote}>
-          “El artesano no necesita limosnas, necesita donde vender”.
+            “Mi papá me enseñó a hacer las piezas, él fue quien me inculcó el amor
         </p>
         <p style={styles.quote}>
           “Yo no pienso que esto se va a acabar, yo estoy con ganas de que se

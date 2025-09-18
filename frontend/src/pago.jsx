@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import artesaniaImg from "./assets/artesania.jpg"; // 👈 importa la imagen desde assets
 
 export default function Pago({ product, onBack }) {
   const [loading, setLoading] = useState(false);
@@ -46,7 +47,11 @@ export default function Pago({ product, onBack }) {
   return (
     <div>
       <h1>{product.name}</h1>
-      <img src="/artesania.jpg" alt="Artesanía" style={{ display: "block", margin: "0 auto", maxWidth: "300px" }} />
+      <img
+        src={artesaniaImg} // 👈 ahora se carga desde assets
+        alt="Artesanía"
+        style={{ display: "block", margin: "0 auto", maxWidth: "300px" }}
+      />
       <p>
         Esta es una hermosa artesanía de Puebla elaborada con barro tradicional. 
         Cada pieza es única, reflejando la tradición y el arte transmitido de 

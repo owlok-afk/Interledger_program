@@ -1,6 +1,8 @@
+// App.jsx
 import React, { useState } from "react";
 import Catalog from "./Catalog.jsx";
 import Pago from "./Pago.jsx";
+import Login from "./Login.jsx"; 
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -20,27 +22,28 @@ export default function App() {
     }
   };
 
-  if (!loggedIn) {
-    return (
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          const username = e.target.username.value;
-          const password = e.target.password.value;
-          handleLogin(username, password);
-        }}
-      >
-        <h2>Login</h2>
-        <input name="username" placeholder="Usuario" />
-        <input name="password" type="password" placeholder="Contraseña" />
-        <button type="submit">Ingresar</button>
-      </form>
-    );
-  }
-
-  if (selectedProduct) {
-    return <Pago product={selectedProduct} onBack={() => setSelectedProduct(null)} />;
-  }
-
-  return <Catalog onSelectProduct={setSelectedProduct} />;
+  return (
+    <div
+      style={{
+        height: "100vh",   // toda la altura
+        width: "100vw",    // todo el ancho
+        display: "flex",
+        flexDirection: "column", // hijos uno debajo de otro (si los hay)
+      }}
+    >
+      {!loggedIn ? (
+        <div style={{ flex: 1 }}>
+          <Login onLogin={handleLogin} />
+        </div>
+      ) : selectedProduct ? (
+        <div style={{ flex: 1 }}>
+          <Pago product={selectedProduct} onBack={() => setSelectedProduct(null)} />
+        </div>
+      ) : (
+        <div style={{ flex: 1 }}>
+          <Catalog onSelectProduct={setSelectedProduct} />
+        </div>
+      )}
+    </div>
+  );
 }

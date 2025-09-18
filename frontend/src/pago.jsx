@@ -1,5 +1,5 @@
+// Pago.jsx
 import React, { useState } from "react";
-import artesaniaImg from "./assets/artesania.jpg"; // 👈 importa la imagen desde assets
 
 export default function Pago({ product, onBack }) {
   const [loading, setLoading] = useState(false);
@@ -11,7 +11,7 @@ export default function Pago({ product, onBack }) {
       const res = await fetch("http://localhost:4000/pago", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: 1000 }), // puedes pasar otro monto si quieres
+        body: JSON.stringify({ amount: 1000 }), //  monto fijo
       });
       const data = await res.json();
       console.log("Respuesta de /pago:", data);
@@ -45,31 +45,26 @@ export default function Pago({ product, onBack }) {
   };
 
   return (
-    <div>
-      <h1>{product.name}</h1>
-      <img
-        src={artesaniaImg} // 👈 ahora se carga desde assets
-        alt="Artesanía"
-        style={{ display: "block", margin: "0 auto", maxWidth: "300px" }}
-      />
-      <p>
-        Esta es una hermosa artesanía de Puebla elaborada con barro tradicional. 
-        Cada pieza es única, reflejando la tradición y el arte transmitido de 
-        generación en generación.
-      </p>
+    <div style={{ textAlign: "center", padding: "40px" }}>
+      <h2>{product?.name || "Pago"}</h2>
 
       <button onClick={handleCreatePayment} disabled={loading}>
-        {loading ? "Creando pago..." : "Crear Pago"}
+        {loading ? "Procesando..." : "Hacer compra"}
       </button>
 
       {lastOutgoingGrant && (
-        <button onClick={handleFinalizePayment} disabled={loading}>
-          {loading ? "Finalizando..." : "Finalizar Pago"}
+        <button
+          onClick={handleFinalizePayment}
+          disabled={loading}
+          style={{ marginLeft: "12px" }}
+        >
+          {loading ? "Procesando..." : "Confirmar"}
         </button>
       )}
 
       <br />
-      <button onClick={onBack}>Volver al catálogo</button>
+      <br />
+      <button onClick={onBack}>Volver</button>
     </div>
   );
 }

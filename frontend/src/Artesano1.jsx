@@ -1,7 +1,6 @@
-// Artesano1.jsx
 import React, { useState } from "react";
 import artesano1 from "./assets/artesano_1.jpg";
-import Pago from "./pago"; // Componente de pago (usado para compra o incentivo)
+import Pago from "./pago";
 
 export default function Artesano1() {
   const [modo, setModo] = useState(null); // null | "compra" | "incentivo"
@@ -32,7 +31,7 @@ export default function Artesano1() {
     },
     quote: { fontStyle: "italic", color: "#555", margin: "16px 0" },
     button: {
-      background: "#8B5E3C", // café artesanal
+      background: "#8B5E3C",
       color: "#fff",
       border: "none",
       padding: "12px 22px",
@@ -88,6 +87,7 @@ export default function Artesano1() {
       {modo === "compra" && (
         <Pago
           product={{ name: "Compra - Artesanía de José Bernabé" }}
+          type="compra"
           onBack={() => setModo(null)}
         />
       )}
@@ -95,6 +95,7 @@ export default function Artesano1() {
       {modo === "incentivo" && (
         <Pago
           product={{ name: "Incentivo para José Bernabé" }}
+          type="incentivo"
           onBack={() => setModo(null)}
         />
       )}

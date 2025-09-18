@@ -31,18 +31,18 @@ const PASS = process.env.PASS;
 
 // Validaciones iniciales
 if (!KEY_ID || !SENDER_WALLET_URL || !RECEIVER_WALLET_URL) {
-  console.error("❌Error Falta configurar .env -> KEY_ID, SENDER o RECEIVER.");
+  console.error("Error Falta configurar .env -> KEY_ID, SENDER o RECEIVER.");
   process.exit(1);
 }
 
 const absoluteKeyPath = path.resolve(process.cwd(), PRIVATE_KEY_PATH);
 if (!fs.existsSync(absoluteKeyPath)) {
-  console.error(`❌ No se encontró private key en: ${absoluteKeyPath}`);
+  console.error(` No se encontró private key en: ${absoluteKeyPath}`);
   process.exit(1);
 }
 const privateKeyPem = fs.readFileSync(absoluteKeyPath, "utf8");
 
-console.log("✅ Backend arrancando con:");
+console.log(" Backend arrancando con:");
 console.log("   KEY_ID:", KEY_ID);
 console.log("   SENDER:", SENDER_WALLET_URL);
 console.log("   RECEIVER:", RECEIVER_WALLET_URL);

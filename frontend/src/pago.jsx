@@ -6,7 +6,7 @@ export default function Pago({ product, type = "compra", onBack }) {
   const [amount, setAmount] = useState("");
 
   const handleCreatePayment = async () => {
-    let monto = type === "compra" ? 10000 : Number(amount);
+    let monto = type === "compra" ? 30000 : Number(amount);
 
     if (type === "incentivo" && (!monto || isNaN(monto) || monto <= 0)) {
       alert("Por favor ingresa un monto válido para donar.");

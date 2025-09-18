@@ -1,7 +1,7 @@
 // App.jsx
 import React, { useState } from "react";
 import Catalog from "./Catalog.jsx";
-import Pago from "./Pago.jsx";
+import Pago from "./pago.jsx";
 import Login from "./Login.jsx"; 
 
 export default function App() {

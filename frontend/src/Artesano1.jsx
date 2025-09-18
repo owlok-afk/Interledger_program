@@ -71,6 +71,9 @@ export default function Artesano1() {
           cosas caras, no nada más Estados Unidos o los chinos pueden dar las
           cosas más caras”.
         </p>
+        <p style={styles.quote}>
+          “Precio:16.38 USD”.
+        </p>
       </div>
 
       {modo === null && (
